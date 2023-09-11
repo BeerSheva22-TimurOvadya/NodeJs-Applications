@@ -1,19 +1,22 @@
 import readline from 'node:readline';
+import EventsEmitter from 'node:events';
 const readlineInterface = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
 });
-export class PromptAsync {
-    #readLineInterface;
-
+readlineInterface.on('SIGINT', () => {
+    console.log(`^C is forbidden`);
+});
+export class PromptAsync extends EventsEmitter {
     prompt(promptStr) {
         return new Promise((resolve) => {
-            readlineInterface.question(promptStr + '--->', (answer) => {
+            readlineInterface.question(promptStr + ' ---> ', (answer) => {
                 resolve(answer);
             });
         });
     }
     close() {
+        this.emit('close');
         readlineInterface.close();
     }
     async readObject(promptStr, mapper) {
@@ -23,7 +26,11 @@ export class PromptAsync {
             running = false;
             try {
                 const answer = await this.prompt(promptStr);
-                res = mapper(answer);
+                if (answer === 'cancel') {
+                    readlineInterface.pause();
+                } else {
+                    res = mapper(answer);
+                }
             } catch (error) {
                 console.log(error);
                 running = true;
@@ -44,7 +51,7 @@ export class PromptAsync {
         }
         return num;
     }
-    readNumber(promptStr, min = Number.MIN_VALUE, max = Number.MAX_VALUE) {
+    readNumber(promptStr, min = -Number.MAX_VALUE, max = Number.MAX_VALUE) {
         return this.readObject(promptStr, (answer) => this.#mapperNumber(answer, min, max));
     }
     readPredicate(promptStr, errorPrompt, predicate) {
