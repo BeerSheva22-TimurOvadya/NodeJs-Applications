@@ -4,7 +4,8 @@
   "description": "",
   "main": "console-appl.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"     
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon calculator.js"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +14,8 @@
   "dependencies": {
     "config": "^3.3.9",
     "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
