@@ -13,7 +13,7 @@ const schema = Joi.object({
 });
 users.use(validate(schema));
 users.post(
-    '/sign-up',
+    '',
     authVerification('ADMIN_ACCOUNTS'),
     asyncHandler(async (req, res) => {
         if (!req.validated) {
