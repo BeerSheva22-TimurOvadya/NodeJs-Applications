@@ -1,14 +1,14 @@
 {
     "server": {
-        "port": 3500
+        "port":3500
     },
     "mongodb": {
         "env_uri": "ATLAS_URI_COMPANY_TEST",
-        "db": "company"
+        "db":"company"
     },
     "jwt": {
-        "env_secret": "JWT_SECRET_TEST",
-        "expiresIn": "1h"
+        "env_secret":"JWT_SECRET_TEST",
+        "expiresIn":"30 days"
     },
     "employee": {
         "minDate": "1950-01-01",
@@ -17,6 +17,9 @@
         "maxId": 999999,
         "minSalary": 7000,
         "maxSalary": 50000,
-        "departments": ["QA", "Audit", "Accounting", "Development", "Management"]
+        "departments":[
+            "QA", "Audit", "Accounting", "Development", "Management"
+        ]
     }
+
 }

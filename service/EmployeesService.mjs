@@ -12,8 +12,8 @@ export default class EmployeesService {
     }
     async #getId() {
         let id;
-        const minId = config.get('emloyee.minId');
-        const maxId = config.get('emloyee.maxId');
+        const minId = config.get('employee.minId');
+        const maxId = config.get('employee.maxId');
         const delta = maxId - minId + 1;
         do {
             id = minId + Math.trunc(Math.random() * delta);
