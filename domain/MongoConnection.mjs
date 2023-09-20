@@ -1,7 +1,7 @@
-import { MongoClient } from "mongodb";
+import { MongoClient } from 'mongodb';
 export default class MongoConnection {
-    #db
-    #client
+    #db;
+    #client;
     constructor(connection_string, dbName) {
         this.#client = new MongoClient(connection_string);
         this.#db = this.#client.db(dbName);

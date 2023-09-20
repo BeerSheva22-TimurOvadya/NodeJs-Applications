@@ -10,7 +10,7 @@ readlineInterface.on('SIGINT', () => {
 export class PromptAsync extends EventsEmitter {
     prompt(promptStr) {
         return new Promise((resolve) => {
-            readlineInterface.question(promptStr + ' ---> ', (answer) => {
+            readlineInterface.question(promptStr + '--->', (answer) => {
                 resolve(answer);
             });
         });
