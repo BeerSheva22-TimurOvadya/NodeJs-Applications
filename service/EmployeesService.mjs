@@ -41,10 +41,14 @@ export default class EmployeesService {
     }
 
     async updateEmployee(employee) {
-        const doc = await this.#collection.updateOne(
-            { _id: employee.id },
-            { $set: { depertment: employee.department, salary: employee.salary } },
-        );
+        const doc = await this.#collection.updateOne({
+            _id: employee.id
+        }, {
+            $set: {
+                department: employee.department,
+                salary: employee.salary
+            }
+        })
         return doc.matchedCount == 1 ? employee : null;
     }
 
