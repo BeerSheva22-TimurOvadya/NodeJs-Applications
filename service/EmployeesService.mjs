@@ -6,6 +6,7 @@ export default class EmployeesService {
     #collection;
     constructor() {
         const connection_string = process.env[config.get(MONGO_ENV_URI)];
+        console.log(connection_string)
         const dbName = config.get(MONGO_DB_NAME);
         const connection = new MongoConnection(connection_string, dbName);
         this.#collection = connection.getCollection('employees');

@@ -18,8 +18,7 @@ app.use(bodyParser.json());
 app.use(morgan('tiny'));
 app.use(auth);
 app.ws('/employees/websocket', (ws, req) => {
-    console.log(`connection from ${req.socket.remoteAddress}, protocol: ${ws.protocol}`)
-    
+    console.log(`connection from ${req.socket.remoteAddress}, protocol: ${ws.protocol}`)    
 })
 app.use((req, res, next)=> {
     req.wss = wss;
